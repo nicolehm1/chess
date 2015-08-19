@@ -7,8 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.List;
 import java.util.Timer;
@@ -18,11 +17,42 @@ import java.util.Timer;
  */
 public class ChessBoard extends JPanel {
 
-    private final static int fieldSize = 128, rowSize = 8, columnSize = 16;
-    private EnumMap<ChessmenEnum, BufferedImage> images = new EnumMap<>(ChessmenEnum.class);
-    private ChessmenEnum[][] pos = new ChessmenEnum[rowSize][columnSize];
+    private final static int rowSize = 8, columnSize = 16;
     Timer timer = new Timer();
     int loopTime = 250;
+    private EnumMap<ChessmenEnum, BufferedImage> images = new EnumMap<>(ChessmenEnum.class);
+    private ChessmenEnum[][] pos = new ChessmenEnum[rowSize][columnSize];
+
+    public ChessBoard() {
+        super();
+        loadResources();
+
+        for (ChessmenEnum[] po : pos) Arrays.fill(po, ChessmenEnum.free);
+        placeStandardChess();
+    }
+
+    public void saveChessmen(File file) {
+        ObjectOutputStream outputStream;
+        try {
+            outputStream = new ObjectOutputStream(new FileOutputStream(file));
+            outputStream.writeObject(pos);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadChessmen(File file) {
+        ObjectInputStream inputStream;
+        try {
+            inputStream = new ObjectInputStream(new FileInputStream(file));
+
+            pos = (ChessmenEnum[][]) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        this.repaint();
+    }
 
     public void move(int fromX, int fromY, int toX, int toY) {
         if (!this.getBounds().contains(fromX, fromY) || !this.getBounds().contains(toX, toY))
@@ -59,14 +89,6 @@ public class ChessBoard extends JPanel {
 
     public void placeFigure(ChessmenEnum figure, int x, int y) {
         pos[y][x] = figure;
-    }
-
-    public ChessBoard() {
-        super();
-        loadResources();
-
-        for (ChessmenEnum[] po : pos) Arrays.fill(po, ChessmenEnum.free);
-        placeStandardChess();
     }
 
     private void placeStandardChess() {
@@ -130,12 +152,11 @@ public class ChessBoard extends JPanel {
 
     private void loadImage(ChessmenEnum imageName) {
         BufferedImage myPicture = null;
-
+        File file = new File("C:\\Users\\nico\\Desktop\\chess\\src\\main\\resources\\" + imageName + ".png");
         try {
-            myPicture = ImageIO.read(new File("C:\\Users\\Nico\\IdeaProjects\\Chess\\src\\main\\resources\\"
-                    + imageName + ".png"));
+            myPicture = ImageIO.read(file);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Couldn't find the image Resource for " + imageName + ".png");
+            JOptionPane.showMessageDialog(null, "Couldn't find the image Resource for " + file.getAbsolutePath());
         }
 
         images.put(imageName, myPicture);
@@ -219,16 +240,17 @@ public class ChessBoard extends JPanel {
         return possibleMoves;
     }
 
-    public void playSoundColumn(int column){
-        for(int j = 0; j < rowSize; j++){
+    public void playSoundColumn(int column) {
+        for (int j = 0; j < rowSize; j++) {
             ChessmenFactory.getInstance().getChessman(pos[j][column]).playSound();
         }
     }
 
-    public void startSoundLoop(){
+    public void startSoundLoop() {
         timer = new Timer();
-        timer.schedule( new TimerTask() {
+        timer.schedule(new TimerTask() {
             int column = 0;
+
             public void run() {
                 playSoundColumn(column++);
                 column %= columnSize;
@@ -236,7 +258,7 @@ public class ChessBoard extends JPanel {
         }, 0, loopTime);
     }
 
-    public void stopSoundLoop(){
+    public void stopSoundLoop() {
         timer.cancel();
     }
 }

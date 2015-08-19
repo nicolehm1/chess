@@ -1,7 +1,6 @@
 package Chessmen;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 
 /**
  * Created by Nico on 14.08.2015.
@@ -10,11 +9,11 @@ public class ChessmenFactory {
     private static ChessmenFactory ourInstance = new ChessmenFactory();
     private EnumMap<ChessmenEnum, Chessmen> chessmenMap = new EnumMap<>(ChessmenEnum.class);
 
-    public static ChessmenFactory getInstance() {
-        return ourInstance;
+    private ChessmenFactory() {
     }
 
-    private ChessmenFactory() {
+    public static ChessmenFactory getInstance() {
+        return ourInstance;
     }
 
     public Chessmen getChessman(ChessmenEnum type) {
@@ -22,7 +21,7 @@ public class ChessmenFactory {
             return chessmenMap.get(type);
         else {
             Chessmen chessmen = new Chessmen(type);
-            chessmenMap.put(type,chessmen);
+            chessmenMap.put(type, chessmen);
             return chessmen;
         }
     }

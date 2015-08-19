@@ -2,24 +2,18 @@ package Chessmen; /**
  * Created by Nico on 13.08.2015.
  */
 
-import java.io.*;
+import javax.sound.sampled.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import javax.sound.sampled.*;
 
 public class Sounds {
 
+    int i = 0;
     private HashMap<String, ArrayList<Clip>> sounds = new HashMap<>();
     private List<Clip> clips = new ArrayList<>();
-    int i = 0;
-
-    public void playSound() {
-        clips.get(i % 10).stop();
-        clips.get(i % 10).setFramePosition(0);
-        clips.get(i % 10).start();
-        i++;
-    }
 
     public Sounds(String str) {
         File file = new File(str);
@@ -44,6 +38,13 @@ public class Sounds {
         } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
             e.printStackTrace();
         }*/
+    }
+
+    public void playSound() {
+        clips.get(i % 10).stop();
+        clips.get(i % 10).setFramePosition(0);
+        clips.get(i % 10).start();
+        i++;
     }
 
     private void loadSound(File file) throws IOException, UnsupportedAudioFileException, LineUnavailableException {

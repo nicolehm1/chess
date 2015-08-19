@@ -2,16 +2,16 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>Stored Properties</comment>
-<entry key="wRook">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Snares\Csp_Snr3.wav</entry>
-<entry key="wKing">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Shakers\Hi_Shk1.wav</entry>
-<entry key="bKnight">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Kicks\Ac_K.wav</entry>
-<entry key="bBishop">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Hi-Hats\Ac_H.wav</entry>
-<entry key="bPawn">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Shakers\Hi_Shk1.wav</entry>
-<entry key="bQueen">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Cymbals\CL_OHH1.wav</entry>
-<entry key="wPawn">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Kicks\Hil_K.wav</entry>
-<entry key="wKnight">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Snares\Csp_Snr3.wav</entry>
-<entry key="wBishop">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Snares\Box_Snr.wav</entry>
-<entry key="bRook">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Percussions\Bngo_1.wav</entry>
-<entry key="wQueen">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Snares\Aco_Snr.wav</entry>
-<entry key="bKing">C:\Users\Nico\IdeaProjects\Chess\src\main\resources\sounds\drums\Claps\Bg_Clp.wav</entry>
+<entry key="wRook">.\src\main\resources\sounds\drums\Snares\Csp_Snr3.wav</entry>
+<entry key="wKing">.\src\main\resources\sounds\drums\Shakers\Hi_Shk1.wav</entry>
+<entry key="bKnight">.\src\main\resources\sounds\drums\Kicks\Ac_K.wav</entry>
+<entry key="bBishop">.\src\main\resources\sounds\drums\Hi-Hats\Ac_H.wav</entry>
+<entry key="bPawn">C:\Users\nico\Desktop\chess\src\main\resources\sounds\drums\Hi-Hats\Brw_H.wav</entry>
+<entry key="bQueen">.\src\main\resources\sounds\drums\Cymbals\CL_OHH1.wav</entry>
+<entry key="wPawn">C:\Users\nico\Desktop\chess\src\main\resources\sounds\drums\Kicks\Dep_K.wav</entry>
+<entry key="wKnight">.\src\main\resources\sounds\drums\Snares\Csp_Snr3.wav</entry>
+<entry key="wBishop">.\src\main\resources\sounds\drums\Snares\Box_Snr.wav</entry>
+<entry key="bRook">.\src\main\resources\sounds\drums\Percussions\Bngo_1.wav</entry>
+<entry key="wQueen">.\src\main\resources\sounds\drums\Snares\Aco_Snr.wav</entry>
+<entry key="bKing">.\src\main\resources\sounds\drums\Claps\Bg_Clp.wav</entry>
 </properties>

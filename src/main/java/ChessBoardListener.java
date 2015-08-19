@@ -1,6 +1,5 @@
 import Chessmen.ChessmenEnum;
 import Chessmen.ChessmenFactory;
-import Chessmen.Sounds;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,9 +12,9 @@ import java.awt.event.MouseListener;
  */
 public class ChessBoardListener implements MouseListener {
 
+    ChessBoard chessBoard;
     private int lastX;
     private int lastY;
-    ChessBoard chessBoard;
 
     public ChessBoardListener(ChessBoard chessBoard) {
         this.chessBoard = chessBoard;
@@ -25,9 +24,9 @@ public class ChessBoardListener implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == 3)
             showMenu(e);
-        else if (e.getButton() == 1){
-            ChessmenFactory.getInstance().getChessman(chessBoard.getChessmenAt(e.getX(),e.getY())).playSound();
-        }else if(e.getButton() == 2){
+        else if (e.getButton() == 1) {
+            ChessmenFactory.getInstance().getChessman(chessBoard.getChessmenAt(e.getX(), e.getY())).playSound();
+        } else if (e.getButton() == 2) {
             chessBoard.playSoundColumn(chessBoard.mapCordToPosX(e.getX()));
         }
     }

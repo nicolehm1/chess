@@ -4,13 +4,9 @@ import java.util.Properties;
 /**
  * Created by Nico on 14.08.2015.
  */
-public class MyProperties extends Properties{
+public class MyProperties extends Properties {
     private static MyProperties ourInstance = new MyProperties();
-    File file = new File("C:\\Users\\Nico\\IdeaProjects\\Chess\\properties");
-
-    public static MyProperties getInstance() {
-        return ourInstance;
-    }
+    File file = new File(".\\properties");
 
     private MyProperties() {
         try {
@@ -18,6 +14,10 @@ public class MyProperties extends Properties{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static MyProperties getInstance() {
+        return ourInstance;
     }
 
     private void loadProperties() throws IOException {

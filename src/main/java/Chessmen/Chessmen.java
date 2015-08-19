@@ -10,6 +10,10 @@ public class Chessmen {
     Sounds sound;
     BufferedImage image;
 
+    public Chessmen(ChessmenEnum type) {
+        this.type = type;
+    }
+
     public BufferedImage getImage() {
         return image;
     }
@@ -31,10 +35,6 @@ public class Chessmen {
     }
 
     public void setType(ChessmenEnum type) {
-        this.type = type;
-    }
-
-    public Chessmen(ChessmenEnum type) {
         this.type = type;
     }
 

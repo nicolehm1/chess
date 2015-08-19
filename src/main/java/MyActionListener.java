@@ -32,8 +32,8 @@ class MyActionListener implements ActionListener {
             Sounds sound = new Sounds(file);
             ChessmenFactory.getInstance().getChessman(chessmen).setSound(sound);
             try {
-                textArea.insert(file.getCanonicalPath(), 0);
-                MyProperties.getInstance().put(chessmen.toString(), file.getCanonicalPath());
+                textArea.insert(file.getPath(), 0);
+                MyProperties.getInstance().put(chessmen.toString(), file.getPath());
                 MyProperties.getInstance().saveProperties();
             } catch (IOException e1) {
                 e1.printStackTrace();

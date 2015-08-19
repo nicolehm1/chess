@@ -1,17 +1,16 @@
 import Chessmen.ChessmenEnum;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.LinkedList;
 import java.util.Properties;
 
 /**
  * Created by Nico on 12.08.2015.
  */
 public class MainWindow {
+    public JFileChooser fc;
     private JPanel panel1;
     private JTabbedPane tabbedPane1;
     private JPanel rawPane;
@@ -42,19 +41,12 @@ public class MainWindow {
     private JButton button12;
     private JButton loopButton;
     private JTextField timer;
-    final JFileChooser fc = new JFileChooser();
-
-    public void start() {
-        JFrame frame = new JFrame("MainWindow");
-        frame.setContentPane(panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        chessBoard.addMouseListener(new ChessBoardListener(chessBoard));
-    }
+    private JButton saveButton;
+    private JButton loadButton;
 
     public MainWindow() {
-        fc.setCurrentDirectory(new File("."));
+        fc = new JFileChooser(new File("."), null);
+        //fc.setCurrentDirectory(new File("."));
 
         button1.addActionListener(new MyActionListener(fc, button1, formattedTextField1, ChessmenEnum.bKing));
         button2.addActionListener(new MyActionListener(fc, button2, formattedTextField2, ChessmenEnum.bQueen));
@@ -97,17 +89,57 @@ public class MainWindow {
             formattedTextField12.insert(prob.getProperty(ChessmenEnum.wPawn.toString()), 0);
         loopButton.addActionListener(new ActionListener() {
             boolean loop = true;
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(loop){
+                if (loop) {
                     loop = false;
                     chessBoard.loopTime = Integer.parseInt(timer.getText());
                     chessBoard.startSoundLoop();
-                }else{
+                } else {
                     loop = true;
                     chessBoard.stopSoundLoop();
                 }
             }
         });
+
+        JFileChooser fcSaveLoad = new JFileChooser(new File("."));
+
+        saveButton.addActionListener(new ActionListener() {
+            JFileChooser fc = fcSaveLoad;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int returnVal = fc.showOpenDialog(saveButton);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    chessBoard.saveChessmen(file);
+                }
+            }
+        });
+        loadButton.addActionListener(new ActionListener() {
+            JFileChooser fc = fcSaveLoad;
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int returnVal = fc.showOpenDialog(saveButton);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    File file = fc.getSelectedFile();
+                    chessBoard.loadChessmen(file);
+                }
+            }
+        });
+    }
+
+    public void start() {
+        JFrame frame = new JFrame("MainWindow");
+        frame.setContentPane(panel1);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        chessBoard.addMouseListener(new ChessBoardListener(chessBoard));
+    }
+
+    private void createUIComponents() {
     }
 }
